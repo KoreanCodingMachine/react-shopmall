@@ -7,7 +7,7 @@ import Data from './data.js';
 import Detail from './Detail.js';
 
 function App() {
-  let [shoes, shoe변경] = useState(Data);
+  let [shoes, setShoes] = useState(Data);
 
   return (
     <div className='app'>
@@ -40,14 +40,12 @@ function App() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-
       <Switch>
-        <Route exact path='/'>
+        <Route path='//'>
           <div className='jumbotron'>
             <h1 style={{ paddingTop: '5%' }}>20% Season Off</h1>
             <p style={{ paddingTop: '2%' }}>
-              loremqw qweeeeeeeeeeeee qweeeeeeeeeeeeeeee wqeeeeeeeeeeeeee
-              qweeeeeeee
+              신발을 사면 걸을때마다 기분이 좋아집니다.
             </p>
             <p style={{ paddingTop: '5%' }}>
               <Button variant='primary'>난 버튼이라고해</Button>
@@ -64,10 +62,8 @@ function App() {
         <Route path='/detail/:id'>
           <Detail shoes={shoes} />
         </Route>
-        {/* <Route path='/어쩌구' component={Modal}></Route> */}
-
         <Route path='/:id'>
-          <div>아무거나적었을때 이거 보여주셈</div>
+          <p>새로 만든 Route입니다.</p>
         </Route>
       </Switch>
     </div>
@@ -90,9 +86,4 @@ function Item(props) {
     </div>
   );
 }
-
 export default App;
-
-// src = 'https://codingapple1.github.io/shop/shoes1.jpg';
-// src = 'https://codingapple1.github.io/shop/shoes2.jpg';
-// src = 'https://codingapple1.github.io/shop/shoes3.jpg';
