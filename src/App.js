@@ -1,14 +1,17 @@
 /*eslint-disable*/
 import { Navbar, Container, Nav, NavDropdown, Button } from 'react-bootstrap';
-import { React, useState } from 'react';
+import React, { useState, useContext } from 'react';
 import './App.css';
 import { Link, Route, Switch } from 'react-router-dom';
 import Data from './data.js';
 import Detail from './Detail.js';
 import axios from 'axios';
+
+export let 재고context = React.createContext();
+
 function App() {
   let [shoes, setShoes] = useState(Data);
-
+  let [재고, 재고변경] = useState([10, 11, 12]);
   return (
     <div className='app'>
       <Navbar bg='light' expand='lg'>
@@ -52,11 +55,13 @@ function App() {
             </p>
           </div>
           <div className='container'>
-            <div className='row'>
-              {shoes.map((a, i) => {
-                return <Item shoes={shoes[i]} i={i} />;
-              })}
-            </div>
+            <재고context.Provider value={재고}>
+              <div className='row'>
+                {shoes.map((a, i) => {
+                  return <Item shoes={shoes[i]} i={i} />;
+                })}
+              </div>
+            </재고context.Provider>
           </div>
           <button
             className='btn btn-primary'
@@ -76,7 +81,9 @@ function App() {
           </button>
         </Route>
         <Route path='/detail/:id'>
-          <Detail shoes={shoes} />
+          <재고context.Provider value={재고}>
+            <Detail shoes={shoes} />
+          </재고context.Provider>
         </Route>
         <Route path='/:id'>
           <p>새로 만든 Route입니다.</p>
@@ -87,6 +94,8 @@ function App() {
 }
 
 function Item(props) {
+  let 재고 = useContext(재고context);
+
   return (
     <div className='col-md-4'>
       <img
@@ -99,7 +108,13 @@ function Item(props) {
       <p style={{ textAlign: 'center' }}>
         {props.shoes.content} & {props.shoes.price}
       </p>
+      <Info />
     </div>
   );
+}
+
+function Info() {
+  let 재고 = useContext(재고context);
+  return <p style={{ textAlign: 'center' }}> 재고 : {재고[0]} </p>;
 }
 export default App;

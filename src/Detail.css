@@ -11,3 +11,12 @@
     display: block;
     padding-top: 25px 
 }
+/* 애니메이션 시작시 */
+.wow-enter {
+    opacity : 0 ;
+  }
+/* 애니메이션 동작시 */
+  .wow-enter-active {
+    opacity : 1 ;
+    transition : all 500ms ;
+  }
