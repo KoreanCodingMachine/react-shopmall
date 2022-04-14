@@ -24,6 +24,15 @@
   color: white;
 }
 
+.jumbotron {
+  width: 100%;
+  height: 650px;
+  text-align: center;
+  background-size: cover;
+  background-image: url('./background.jpg');
+  color: white;
+}
+
 .App-link {
   color: #61dafb;
 }
