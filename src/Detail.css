@@ -1,0 +1,13 @@
+.box{
+    background-color: antiquewhite;
+    width: 30%;
+    margin: 0 auto;
+    height: 80px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.box-title{
+    display: block;
+    padding-top: 25px 
+}
