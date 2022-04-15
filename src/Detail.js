@@ -5,6 +5,7 @@ import { Nav } from 'react-bootstrap';
 import { 재고context } from './App.js';
 import { CSSTransition } from 'react-transition-group';
 import './Detail.css';
+import { connect } from 'react-redux';
 
 function Detail(props) {
   let history = useHistory();
@@ -80,7 +81,17 @@ function Detail(props) {
           <p>{findItem.content}</p>
           <p>{findItem.price}</p>
           <p>재고:{재고[0]}</p>
-          <button className='btn btn-danger'>주문하기</button>
+          <button
+            onClick={() => {
+              props.dispatch({
+                type: '항목추가',
+                payload: { id: 2, name: '새로운 상품', quan: 1 },
+              });
+              history.push('/cart');
+            }}
+          >
+            주문하기
+          </button>
           <button
             onClick={() => {
               history.push('/');
@@ -108,4 +119,13 @@ function Tabcontent(props) {
     return <div>내용2</div>;
   }
 }
-export default Detail;
+
+function reduxExample(state) {
+  console.log(state);
+  return {
+    state: state.reducer,
+    alert열렸니: state.reducer2,
+  };
+}
+
+export default connect(reduxExample)(Detail);
